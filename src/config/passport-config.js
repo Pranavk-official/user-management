@@ -15,15 +15,25 @@ async function authenticateUser(email, password, done) {
     return done(null, false, { message: "No user found with that email" });
   }
 
-  try {
-    if (await bcrypt.compare(password, user.password)) {
-      return done(null, user);
-    } else {
-      return done(null, false, { message: "Password incorrect" });
-    }
-  } catch (e) {
-    return done(e);
+  const isValid = await bcrypt.compare(password, user.password);
+
+  console.log(isValid);
+
+  if (!isValid) {
+    return done(null, false);
+  } else {
+    return done(null, user);
   }
+
+  // try {
+  //   if (await bcrypt.compare(password, user.password)) {
+  //     return done(null, user);
+  //   } else {
+  //     return done(null, false, { message: "Password incorrect" });
+  //   }
+  // } catch (e) {
+  //   return done(e);
+  // }
 }
 
 async function authenticateAdmin(email, password, done) {
@@ -32,20 +42,30 @@ async function authenticateAdmin(email, password, done) {
     return done(null, false, { message: "No admin found with that email" });
   }
 
-  try {
-    if (await bcrypt.compare(password, user.password)) {
-      return done(null, user);
-    } else {
-      return done(null, false, { message: "Password incorrect" });
-    }
-  } catch (e) {
-    return done(e);
+  const isValid = await bcrypt.compare(password, user.password);
+
+  console.log(isValid);
+
+  if (!isValid) {
+    return done(null, false);
+  } else {
+    return done(null, user);
   }
+
+  // try {
+  //   if (await bcrypt.compare(password, user.password)) {
+  //     return done(null, user);
+  //   } else {
+  //     return done(null, false, { message: "Password incorrect" });
+  //   }
+  // } catch (e) {
+  //   return done(e);
+  // }
 }
 
 // passport.use(new LocalStrategy(customFields, verifyCallback));
-passport.use('user-local', new LocalStrategy(customFields, authenticateUser));
-passport.use('admin-local', new LocalStrategy(customFields, authenticateAdmin));
+passport.use("user-local", new LocalStrategy(customFields, authenticateUser));
+passport.use("admin-local", new LocalStrategy(customFields, authenticateAdmin));
 
 passport.serializeUser((user, done) => {
   done(null, user.id);

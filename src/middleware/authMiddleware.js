@@ -50,6 +50,13 @@ module.exports = {
             next()
         }
     },
+    isAdminLoggedOut: (req,res,next) => {
+        if(req.isAuthenticated() && req.user.isAdmin){
+            res.redirect('/admin')
+        }else{
+            next()
+        }
+    },
     isAdmin: (req,res,next) => {
         const token = req.cookies.jwt
         if(token){

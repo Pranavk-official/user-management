@@ -27,7 +27,7 @@
           <th scope="col">Last Name</th>
           <th scope="col">Email</th>
           <th scope="col">isAdmin</th>
-          <th scope="col" class="text-end">Action</th>
+          <th scope="col" class="text-center">Action</th>
         </tr>
       </thead>
   
@@ -38,20 +38,20 @@
             <td><%= element.lastName %></td>
             <td><%= element.email %></td>
             <td><%= element.isAdmin %></td>
-            <td class="text-end">
+            <td>
   
-              <div class="d-flex flex-row justify-content-end gap-2">
+              <div class="d-flex flex-row justify-content-center gap-2">
   
-                <a href="/view/<%= element._id %>" type="button" class="btn btn-primary btn-small">
+                <a href="/view/<%= element._id %>" type="button" class="btn btn-primary btn-sm">
                   <i class="bi bi-eye"></i>
                 </a>
   
-                <a href="/edit/<%= element._id %>" type="button" class="btn btn-warning btn-small">
+                <a href="/edit/<%= element._id %>" type="button" class="btn btn-warning btn-sm">
                   <i class="bi bi-pencil"></i>
                 </a>
   
                 <form action="/edit/<%= element._id %>?_method=DELETE" method="POST" class="position-relative">
-                  <button type="submit" class="btn btn-danger btn-small">
+                  <button type="submit" class="btn btn-danger btn-sm">
                     <i class="bi bi-person-x"></i>
                   </button>
                 </form>

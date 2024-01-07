@@ -12,8 +12,8 @@ const {  isLoggedIn, isAdminLoggedIn, isLoggedOut } = require('../middleware/aut
  */
 
 // GET / 
-router.get('/login',  authController.getUserLogin)
-router.get('/register', authController.getUserRegister)
+router.get('/login',  isLoggedOut, authController.getUserLogin)
+router.get('/register', isLoggedOut, authController.getUserRegister)
 
 // POSR / 
 router.post('/login', authController.userLogin)

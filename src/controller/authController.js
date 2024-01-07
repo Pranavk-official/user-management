@@ -187,9 +187,18 @@ module.exports = {
 
   logout: (req, res) => {
     if (req.user) {
-      const role = req.user.isAdmin ? "User" : "Admin";
 
-      req.logout((err) => {
+      let role = ''
+
+      if (req.user.isAdmin){
+        role = 'Admin'
+      }else {
+        role = 'User'
+
+      }
+
+      // const role = req.user.isAdmin ? "User" : "Admin";
+      req.logOut((err) => {
         if (err) {
           console.log(err);
         } else {
