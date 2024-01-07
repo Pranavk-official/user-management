@@ -9,8 +9,9 @@ module.exports = {
   // User GET /
   // login register
   getUserLogin: (req, res) => {
-    if (req.isAuthenticated()) {
-      res.redirect("/");
+
+    if(req.user){
+      res.redirect('/')
     }
 
     const locals = {

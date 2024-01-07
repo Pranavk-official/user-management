@@ -44,7 +44,7 @@ module.exports = {
         }
     },
     isLoggedOut: (req,res,next) => {
-        if(req.isAuthenticated()){
+        if(req.isAuthenticated() && req.user){
             res.redirect('/')
         }else{
             next()
