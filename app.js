@@ -57,7 +57,7 @@ app.use(
     maxAge: 3 * 60 * 60,
     store: MongoStore.create({
       mongoUrl: process.env.MONGODB_URI,
-      ttl: 2 * 60 * 60 * 1000,
+      ttl: 2 * 60 * 60 ,
     }),
     cookie: {
       maxAge: 3 * 60 * 60,
