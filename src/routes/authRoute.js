@@ -5,14 +5,14 @@ const router = express.Router()
 const authController = require('../controller/authController')
 const { userRegisterValidationRules, validate } = require('../middleware/validationMiddleware');
 
-const { isAdmin, isUser, isLoggedIn, isLoggedOut} = require('../middleware/authMiddleware')
+const {  isLoggedIn, isAdminLoggedIn, isLoggedOut } = require('../middleware/authMiddleware')
 
 /**
  * User
  */
 
 // GET / 
-router.get('/login', authController.getUserLogin)
+router.get('/login',  authController.getUserLogin)
 router.get('/register', authController.getUserRegister)
 
 // POSR / 
@@ -30,5 +30,10 @@ router.get('/admin/register', authController.getAdminRegister)
 // GET /  
 router.post('/admin/login', authController.adminLogin)
 router.post('/admin/register', authController.adminRegister)
+
+// Logout
+router.get('/logout', authController.logout)
+router.get('/admin/logout', authController.logout)
+
 
 module.exports = router

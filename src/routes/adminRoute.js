@@ -5,7 +5,7 @@ const router = express.Router()
 const adminController = require('../controller/adminController')
 const { isAdmin, isAdminLoggedIn} = require('../middleware/authMiddleware')
 
-router.get('/', isAdmin, isAdminLoggedIn, adminController.getDashboard)
+router.get('/',  adminController.getDashboard)
 
 
 module.exports = router

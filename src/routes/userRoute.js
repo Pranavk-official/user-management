@@ -2,10 +2,10 @@ const express = require('express')
 const router = express.Router()
 
 const userController = require('../controller/userController')
-const { isAdmin, isUser, isLoggedIn, isLoggedOut} = require('../middleware/authMiddleware')
+const {  isLoggedIn, isAdminLoggedIn } = require('../middleware/authMiddleware')
 
 // HomePage
-router.get('/', isUser, isLoggedIn,userController.getHome)
+router.get('/', isLoggedIn,userController.getHome)
 
 
 module.exports = router

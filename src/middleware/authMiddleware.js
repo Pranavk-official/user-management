@@ -26,7 +26,9 @@ module.exports = {
         }
     },
     isLoggedIn: (req,res,next) => {
-        if(req.session && req.session.user){
+        if(req.user && req.isAuthenticated()){
+            // console.log(req);
+            console.log(req.isUnauthenticated());
             next()
         }else {
             req.flash('error', 'Not Authorized')
@@ -34,15 +36,19 @@ module.exports = {
         }
     },
     isAdminLoggedIn: (req,res,next) => {
-        if(req.session && req.session.admin){
+        if(req.user && req.user.isAdmin && req.isAuthenticated()){
             next()
         }else {
             req.flash('error', 'Not Authorized')
-            res.redirect('/login')
+            res.redirect('/admin/login')
         }
     },
     isLoggedOut: (req,res,next) => {
-        
+        if(req.isAuthenticated()){
+            res.redirect('/')
+        }else{
+            next()
+        }
     },
     isAdmin: (req,res,next) => {
         const token = req.cookies.jwt

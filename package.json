@@ -9,6 +9,7 @@
   "dependencies": {
     "bcrypt": "^5.1.1",
     "connect-flash": "^0.1.1",
+    "connect-mongo": "^5.1.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "dotenv": "^16.3.1",
@@ -22,6 +23,9 @@
     "method-override": "^3.0.0",
     "mongoose": "^8.0.3",
     "morgan": "~1.9.1",
+    "nocache": "^4.0.0",
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0",
     "uuid": "^9.0.1"
   },
   "devDependencies": {
