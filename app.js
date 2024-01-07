@@ -44,7 +44,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Session
-app.use(session({
+app.use(session({ 
   secret: uuidv4(),
   resave: false,
   saveUninitialized: false,
@@ -53,7 +53,7 @@ app.use(session({
   }
 }))
 
-
+// passport js 
 app.use(flash())
 
 

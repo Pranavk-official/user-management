@@ -3,10 +3,10 @@ const User = require('../model/userSchema')
 
 
 module.exports = {
+
   getDashboard: async (req, res) => {
     const locals = {
-      title: "NodeJs",
-      description: "Free NodeJs User Management System",
+      title: "User Management",
     };
 
     const messages = await req.flash("info");
@@ -31,4 +31,7 @@ module.exports = {
       layout: adminLayout
     });
   },
+  /**
+   * View Edit 
+   */
 };
