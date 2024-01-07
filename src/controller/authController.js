@@ -1,8 +1,5 @@
 const bcrypt = require("bcrypt");
-
 const adminLayout = "./layouts/adminLayout.ejs";
-
-// userModel
 const User = require("../model/userSchema");
 
 module.exports = {

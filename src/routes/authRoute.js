@@ -3,6 +3,8 @@ const router = express.Router()
 
 // authController
 const authController = require('../controller/authController')
+const { userRegisterValidationRules, validate } = require('../middleware/validationMiddleware');
+
 
 
 /**
@@ -14,7 +16,7 @@ router.get('/login', authController.getUserLogin)
 router.get('/register', authController.getUserRegister)
 
 // POSR / 
-router.post('/login', authController.getUserLogin)
+router.post('/login', authController.userLogin)
 router.post('/register', authController.userRegister)
 
 /**
