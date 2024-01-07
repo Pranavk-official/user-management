@@ -188,22 +188,15 @@ module.exports = {
   logout: (req, res) => {
     if (req.user) {
 
-      let role = ''
-
-      if (req.user.isAdmin){
-        role = 'Admin'
-      }else {
-        role = 'User'
-
-      }
+      let isAdmin = req.user.isAdmin 
 
       // const role = req.user.isAdmin ? "User" : "Admin";
-      req.logOut((err) => {
+      req.logout((err) => {
         if (err) {
           console.log(err);
         } else {
-          req.flash("success", `${role} Logged Out!!`);
-          if (role === "Admin") res.redirect("/admin/login");
+          req.flash("success", `Logged Out!!`);
+          if (isAdmin) res.redirect("/admin/login");
           else res.redirect("/login");
         }
       });
