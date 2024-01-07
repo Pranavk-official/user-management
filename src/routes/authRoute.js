@@ -13,6 +13,10 @@ const authController = require('../controller/authController')
 router.get('/login', authController.getUserLogin)
 router.get('/register', authController.getUserRegister)
 
+// POSR / 
+router.post('/login', authController.getUserLogin)
+router.post('/register', authController.userRegister)
+
 /**
  * Admin
 */
