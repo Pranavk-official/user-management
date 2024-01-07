@@ -1,1 +1,28 @@
-<h1><%= locals.title %> </h1>
+<div class="container card py-5 my-5" style="max-width: 550px;">
+    <h1>
+        <%= locals.title %>
+    </h1>
+
+    <form action="/admin/login" method="POST" class="card-body">
+
+        <% if (success.length> 0) { %>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <%= success %>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <% } %>
+        <% if (error.length> 0) { %>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <%= error %>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <% } %>
+        <label for="email" class="form-label mb-2">Email</label>
+        <input name="email" type="email" class="form-control mb-4" id="email"
+            placeholder="example@email.com" required>
+        <label for="pwd" class="form-label">Password</label>
+        <input name="pwd" type="password" class="form-control" id="pwd" required>
+
+        <button class="btn btn-primary my-2" type="submit">Submit</button>
+    </form>
+</div>
