@@ -16,6 +16,7 @@ const passport = require("./src/config/passport-config");
 // Database connection
 const connectDB = require("./src/config/db");
 
+// Route files import
 const authRouter = require("./src/routes/authRoute");
 const userRouter = require("./src/routes/userRoute");
 const adminRouter = require("./src/routes/adminRoute");
@@ -26,7 +27,10 @@ const adminRouter = require("./src/routes/adminRoute");
  * Auth - admin - login, register
  *
  * UserRoute - homepage
- * AdminRoute - dashboard, edit, view, delete and search (create user)*
+ * AdminRoute - dashboard, edit, view, delete and search (create user)* : Work in Progress
+ * 
+ * User verification ?? email otp ??
+ * User SSO login ?? Google Strategy ? should i add it ??
  */
 
 // Express App
@@ -41,6 +45,15 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 app.set("layout", "./layouts/userLayout");
 
+
+/**
+ * Middlewares
+ * - Morgan
+ * - body parser 
+ * - cookie parser
+ * - method override
+ * - static files
+ */
 app.use(logger("dev"));
 app.use(express.json());
 app.use(methodOverride("_method"));
@@ -72,9 +85,10 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
-
+// nocache for disabling browser caching
 app.use(nocache());
 
+// Routes
 app.use("/", authRouter);
 app.use("/", userRouter);
 app.use("/admin", adminRouter);
