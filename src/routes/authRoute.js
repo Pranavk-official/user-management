@@ -3,9 +3,7 @@ const router = express.Router()
 
 // authController
 const authController = require('../controller/authController')
-const { userRegisterValidationRules, validate } = require('../middleware/validationMiddleware');
-
-const {  isLoggedIn, isAdminLoggedIn, isAdminLoggedOut, isLoggedOut } = require('../middleware/authMiddleware')
+const { isAdminLoggedOut, isLoggedOut } = require('../middleware/authMiddleware')
 
 /**
  * User

@@ -33,6 +33,7 @@ module.exports = {
     });
   },
   /**
-   * View Edit 
+   * USER - View, Edit, Delete 
+   * USER - Block feature ?? PUT / or PATCH ?? 
    */
 };

@@ -2,8 +2,8 @@ const bcrypt = require("bcrypt");
 const adminLayout = "./layouts/adminLayout.ejs";
 const User = require("../model/userSchema");
 const passport = require("passport");
-const jwt = require("jsonwebtoken");
-const jwtSecret = process.env.JWT_SECRET;
+// const jwt = require("jsonwebtoken");
+// const jwtSecret = process.env.JWT_SECRET;
 
 module.exports = {
   // User GET /

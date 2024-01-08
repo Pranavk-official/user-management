@@ -1,6 +1,6 @@
 module.exports = {
     getHome: (req,res) => {
-        console.log(req.user);
+        // console.log(req.user);
         const locals = {
             title: 'Home Page'
         }
