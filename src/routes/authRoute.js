@@ -29,7 +29,7 @@ router.get('/admin/register', isAdminLoggedOut, authController.getAdminRegister)
 
 // POST /  
 router.post('/admin/login', authController.adminLogin)
-router.post('/admin/register', authController.adminRegister)
+// router.post('/admin/register', authController.adminRegister)
 
 // Logout
 router.get('/logout', authController.logout)
