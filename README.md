@@ -1,6 +1,3 @@
-# User Management
-
-
 # Simple User Management System
 
 A Node.js web application project with a user management system using Express and MongoDB.
