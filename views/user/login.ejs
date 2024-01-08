@@ -10,19 +10,42 @@
                 <%= success %>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
-        <% } %>
-        <% if (error.length> 0) { %>
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                <%= error %>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        <% } %>
-        <label for="email" class="form-label mb-2">Email</label>
-        <input name="email" type="email" class="form-control mb-4" id="email"
-            placeholder="example@email.com" required>
-        <label for="pwd" class="form-label">Password</label>
-        <input name="password" type="password" class="form-control" id="pwd" required>
+            <% } %>
+                <% if (error.length> 0) { %>
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <%= error %>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    <% } %>
+                        <label for="email" class="form-label mb-2">Email</label>
+                        <input name="email" type="email" class="form-control mb-4" id="email"
+                            placeholder="example@email.com" required>
+                        <label for="pwd" class="form-label">Password</label>
+                        <div class="input-group">
+                            <input name="password" type="password" class="form-control" id="pwd" required>
+                            <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                                <i class="bi bi-eye" aria-hidden="true" id="eye"></i>
+                            </button>
+                        </div>
 
-        <button class="btn btn-primary my-2" type="submit">Submit</button>
+                        <button class="btn btn-primary my-2" type="submit">Submit</button>
     </form>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+
+<script>
+    const password = document.querySelector("#pwd");
+    const eyeIcon = document.querySelector("#eye");
+    const togglePassword = document.querySelector("#togglePassword");
+
+    togglePassword.addEventListener("click", () => {
+        if (eyeIcon.classList.contains("bi-eye")) {
+            password.setAttribute("type", "text");
+            eyeIcon.classList.replace("bi-eye", "bi-eye-slash");
+        } else {
+            password.setAttribute("type", "password");
+            eyeIcon.classList.replace("bi-eye-slash", "bi-eye");
+        }
+    });
+</script>
