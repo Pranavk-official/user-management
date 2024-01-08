@@ -76,7 +76,7 @@ npm start
 
 > for running in dev mode
 ```bash
-    npm run dev
+npm run dev
 ```
 
 The application should now be running on [localhost:3000](http://localhost:3000/).
