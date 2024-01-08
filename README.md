@@ -5,17 +5,20 @@
 
 A Node.js web application project with a user management system using Express and MongoDB.
 
+> Live demo : [user-management](https://user-management-8fzd.onrender.com).
+
 ## Features
 
 ### User Side:
-- Login
-- Register
-- View homepage with user details
+[x] Login
+[x] Register
+[x] View homepage with user details
 
 ### Admin Side:
-- Login
-- Edit and view user details
-- Delete user
+[x] Login
+[x] View user list
+[] Edit and view user details
+[] Delete user
 
 ### Security:
 - User authentication implemented using Passport.js local strategy.
@@ -80,6 +83,9 @@ npm start
     ```
 
 The application should now be running on [localhost:3000](http://localhost:3000/).
+
+
+> Live demo : [user-management](https://user-management-8fzd.onrender.com).
 
 ## Built With
 
