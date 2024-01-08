@@ -75,7 +75,7 @@ module.exports = {
       }
     }
   },
-
+  
   userLogin: (req, res, next) => {
     // console.log(req.body);
     passport.authenticate("user-local", (err, user, info) => {
@@ -85,6 +85,7 @@ module.exports = {
       }
       if (!user) {
         console.log(info);
+        req.flash('error', info.message)
         return res.redirect("/login");
       }
       req.logIn(user, (err) => {
@@ -103,7 +104,7 @@ module.exports = {
     const locals = {
       title: "Admin Login",
     };
-
+    
     res.render("admin/login", {
       locals,
       success: req.flash("success"),
@@ -173,6 +174,7 @@ module.exports = {
       }
       if (!user) {
         console.log(info);
+        req.flash('error','Invalid Credentials!!!')
         return res.redirect("/admin/login");
       }
       req.logIn(user, (err) => {

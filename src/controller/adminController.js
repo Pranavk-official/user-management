@@ -14,7 +14,7 @@ module.exports = {
     let perPage = 12;
     let page = req.query.page || 1;
 
-    const users = await User.aggregate([{ $sort: { createdAt: -1 } }])
+    const users = await User.aggregate([{ $sort: { createdAt: -1} }])
       .skip(perPage * page - perPage)
       .limit(perPage)
       .exec();
@@ -24,6 +24,7 @@ module.exports = {
 
     res.render("admin/dashboard", {
       locals,
+      admin: req.user,
       users,
       current: page,
       pages: Math.ceil(count / perPage),

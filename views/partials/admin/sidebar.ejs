@@ -1,16 +1,10 @@
-<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+<nav id="sidebarMenu" class="col-md-2 col-lg-2 d-md-block bg-light sidebar collapse">
     <div class="position-sticky pt-3 sidebar-sticky">
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/">
+                <a class="nav-link active" aria-current="page" href="/admin">
                     <i class="bi bi-house"></i>
                     Dashboard
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/profile">
-                    <i class="bi bi-person-badge"></i>
-                    Profile
                 </a>
             </li>
             <li class="nav-item">
@@ -19,6 +13,21 @@
                     About
                 </a>
             </li>
+            <% if (typeof admin !== 'undefined') { %>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/profile">
+                        <i class="bi bi-person-badge"></i>
+                        Profile
+                    </a>
+                </li>
+             
+                <ul class="navbar-nav px-3">
+                    <li class="nav-item text-nowrap">
+                        <a class="nav-link" href="/admin/logout">Sign out</a>
+                    </li>
+                </ul>
+            <% } %>
         </ul>
     </div>
 </nav>
