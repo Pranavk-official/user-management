@@ -16,8 +16,8 @@ router.get('/login',  isLoggedOut,authController.getUserLogin)
 router.get('/register', isLoggedOut, authController.getUserRegister)
 
 // POST / 
-router.post('/login', authController.userLogin)
-router.post('/register', authController.userRegister)
+router.post('/login', isLoggedOut, authController.userLogin)
+router.post('/register', isLoggedOut, authController.userRegister)
 
 /**
  * Admin

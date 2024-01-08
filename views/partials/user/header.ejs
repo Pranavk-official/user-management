@@ -1,17 +1,37 @@
 <header>
-    <nav class="navbar bg-body-tertiary">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">
-            <img src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo.svg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
-            <%= locals.title %> 
-          </a>
+  <nav class="navbar bg-dark navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo.svg" alt="Logo" width="30" height="24"
+          class="d-inline-block align-text-top">
+        <%= locals.title %>
+      </a>
+
+        <ul class="navbar-nav">
           <% if (typeof user !== 'undefined') { %>
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a href="/logout" class="nav-link text-red">Sign Out</a>
-              </li>
-            </ul>
+            <li class="nav-item">
+              <a class="nav-link text-danger" href="/logout">
+                <i class="bi bi-box-arrow-left"></i>
+                Sign Out
+              </a>
+            </li>
+          <% } else { %>
+           
+            <li class="nav-item">
+              <a class="nav-link text-primary" href="/login">
+                <i class="bi bi-box-arrow-in-right"></i>
+                Sign In
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-info" href="/register">
+                <i class="bi bi-person-fill-add"></i>
+                Sign Up
+              </a>
+            </li>
           <% } %>
-        </div>
-      </nav>
+        </ul>
+
+    </div>
+  </nav>
 </header>

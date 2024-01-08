@@ -9,9 +9,8 @@ module.exports = {
   // User GET /
   // login register
   getUserLogin: (req, res) => {
-
-    if(req.user){
-      res.redirect('/')
+    if (req.user) {
+      res.redirect("/");
     }
 
     const locals = {
@@ -187,22 +186,25 @@ module.exports = {
   },
 
   logout: (req, res) => {
-    if (req.user) {
-
-      let isAdmin = req.user.isAdmin 
-
-      // const role = req.user.isAdmin ? "User" : "Admin";
-      req.logout((err) => {
-        if (err) {
-          console.log(err);
-        } else {
-          req.flash("success", `Logged Out!!`);
-          if (isAdmin) res.redirect("/admin/login");
-          else res.redirect("/login");
-        }
-      });
-    } else {
-      res.redirect("/login");
-    }
+    req.logOut((err) => {
+      if (err) {
+        console.log(err);
+      } else {
+        req.flash("success", `Logged Out!!`);
+        res.clearCookie("connect.sid");
+        res.redirect("/login");
+      }
+    });
+  },
+  adminLogout: (req, res) => {
+    req.logOut((err) => {
+      if (err) {
+        console.log(err);
+      } else {
+        req.flash("success", `Logged Out!!`);
+        res.clearCookie("connect.sid");
+        res.redirect("/admin/login");
+      }
+    });
   },
 };

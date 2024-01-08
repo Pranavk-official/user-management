@@ -54,7 +54,7 @@ app.use(
     secret: process.env.SECRET,
     resave: false,
     saveUninitialized: false,
-    maxAge: 3 * 60 * 60,
+    maxAge: 60 * 60,
     store: MongoStore.create({
       mongoUrl: process.env.MONGODB_URI,
       ttl: 2 * 60 * 60 ,
