@@ -67,10 +67,9 @@ app.use(
     secret: process.env.SECRET,
     resave: false,
     saveUninitialized: false,
-    maxAge: 2 * 60 * 60,
     store: MongoStore.create({
       mongoUrl: process.env.MONGODB_URI,
-      ttl: 2 * 60 * 60 ,
+      ttl: 3 * 60 * 60 ,
     }),
     cookie: {
       maxAge: 3 * 60 * 60,
