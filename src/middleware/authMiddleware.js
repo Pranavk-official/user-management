@@ -12,7 +12,7 @@ module.exports = {
             console.log(req.isUnauthenticated());
             next()
         }else {
-            req.flash('error', 'Not Authorized')
+            // req.flash('error', 'Not Authorized')
             res.redirect('/login')
         }
     },
@@ -20,7 +20,7 @@ module.exports = {
         if(req.user && req.user.isAdmin && req.isAuthenticated()){
             next()
         }else {
-            req.flash('error', 'Not Authorized')
+            // req.flash('error', 'Not Authorized')
             res.redirect('/admin/login')
         }
     },

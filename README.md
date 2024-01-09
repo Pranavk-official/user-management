@@ -15,7 +15,8 @@ A Node.js web application project with a user management system using Express an
 ### Admin Side:
 - [x] Login
 - [x] View user list
-- [ ] Edit and view user details
+- [ ] Edit user details
+- [ ] View user details
 - [ ] Delete user
 
 ### Security:

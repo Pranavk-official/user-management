@@ -39,7 +39,7 @@ async function authenticateUser(email, password, done) {
 async function authenticateAdmin(email, password, done) {
   const user = await User.findOne({ email, isAdmin: true });
   if (!user) {
-    return done(null, false, { message: "No admin found with that email" });
+    return done(null, false, { message: "Not Authorized" });
   }
 
   const isValid = await bcrypt.compare(password, user.password);
