@@ -9,7 +9,7 @@ module.exports = {
     isLoggedIn: (req,res,next) => {
         if(req.user && req.isAuthenticated()){
             // console.log(req);
-            console.log(req.isUnauthenticated());
+            // console.log(req.isUnauthenticated());
             next()
         }else {
             // req.flash('error', 'Not Authorized')

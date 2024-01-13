@@ -6,6 +6,8 @@ const adminController = require('../controller/adminController')
 const { isAdmin, isAdminLoggedIn} = require('../middleware/authMiddleware')
 
 router.get('/',  isAdminLoggedIn, adminController.getDashboard)
+router.get('/view/:id',  isAdminLoggedIn, adminController.viewUser)
+router.get('/edit/:id',  isAdminLoggedIn, adminController.editUser)
 
 
 module.exports = router

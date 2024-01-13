@@ -42,15 +42,15 @@
   
               <div class="d-flex flex-row justify-content-center gap-2">
   
-                <a href="/view/<%= element._id %>" type="button" class="btn btn-primary btn-sm">
+                <a href="/admin/view/<%= element._id %>" type="button" class="btn btn-primary btn-sm">
                   <i class="bi bi-eye"></i>
                 </a>
   
-                <a href="/edit/<%= element._id %>" type="button" class="btn btn-warning btn-sm">
+                <a href="/admin/edit/<%= element._id %>" type="button" class="btn btn-warning btn-sm">
                   <i class="bi bi-pencil"></i>
                 </a>
   
-                <form action="/edit/<%= element._id %>?_method=DELETE" method="POST" class="position-relative">
+                <form action="/admin/edit/<%= element._id %>?_method=DELETE" method="POST" class="position-relative">
                   <button type="submit" class="btn btn-danger btn-sm">
                     <i class="bi bi-person-x"></i>
                   </button>

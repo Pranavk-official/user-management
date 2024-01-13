@@ -55,9 +55,9 @@ app.set("layout", "./layouts/userLayout");
  * - static files
  */
 app.use(logger("dev"));
-app.use(express.json());
 app.use(methodOverride("_method"));
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
@@ -67,6 +67,7 @@ app.use(
     secret: process.env.SECRET,
     resave: false,
     saveUninitialized: false,
+    maxAge: 3 * 60 * 60,
     store: MongoStore.create({
       mongoUrl: process.env.MONGODB_URI,
       ttl: 3 * 60 * 60 ,

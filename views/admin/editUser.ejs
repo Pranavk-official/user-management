@@ -1,0 +1,131 @@
+<div class="container card py-5 my-5" style="max-width: 550px;">
+    <h1>
+        <%= locals.title + ' : ' + user.firstName + ' ' + user.lastName%>
+    </h1>
+
+    <form action="/admin/edit/<% user._id %>" method="POST" class="card-body">
+
+        <% if (success.length> 0) { %>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <%= success %>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <% } %>
+        <% if (error.length> 0) { %>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <%= error %>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <% } %>
+        <div class="row g-3 mb-4">
+            <div class="col-md-6">
+                <label for="firstName" class="form-label">First name</label>
+                <input name="firstName" type="text" class="form-control" id="firstName" value="<%- user.firstName %>" required>
+            </div>
+            <div class="col-md-6">
+                <label for="lastName" class="form-label">Last name</label>
+                <input name="lastName" type="text" class="form-control" id="lastName" value="<%- user.lastName %>" required>
+            </div>
+        </div>
+        <label for="email" class="form-label mb-2">Email</label>
+        <input name="email" type="email" class="form-control mb-4" id="email" value="<%- user.email %>" required>
+        <div class="row g-3 mb-2">
+            <div class="col-md-6">
+                <label for="pwd" class="form-label">Password</label>
+                <div class="input-group">
+                    <input name="pwd" type="password" class="form-control" id="pwd"  required>
+                    <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                        <i class="bi bi-eye" aria-hidden="true" id="eye"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="pwdConf" class="form-label">Password Confirmation</label>
+                <div class="input-group">
+                    <input name="pwdConf" type="password" class="form-control" id="pwdConf" required>
+                    <button class="btn btn-outline-secondary" type="button" id="togglePassword2">
+                        <i class="bi bi-eye" aria-hidden="true" id="eye2"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <button class="btn btn-primary my-2" type="submit">Submit</button>
+
+    </form>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const form = document.querySelector('form');
+
+        form.addEventListener('submit', function (event) {
+            // Prevent form submission
+            event.preventDefault();
+
+            // Check if the form is valid
+            if (!form.checkValidity()) {
+                // Form is invalid - do something like show a message
+                return;
+            }
+
+            // Custom validation for password length
+            const password = document.getElementById('pwd');
+            if (password.value.length < 8) {
+                password.setCustomValidity('Password must be at least 8 characters long.');
+                password.reportValidity();
+                return;
+            } else {
+                password.setCustomValidity(''); // Clear custom validity message
+            }
+
+            // Check if passwords match
+            const pwdConf = document.getElementById('pwdConf');
+            if (password.value !== pwdConf.value) {
+                pwdConf.setCustomValidity('Passwords do not match.');
+                pwdConf.reportValidity();
+                return;
+            } else {
+                pwdConf.setCustomValidity(''); // Clear custom validity message
+            }
+
+            // Form is valid, you can proceed with form submission or further processing
+            form.submit();
+        });
+
+        // Add input event listeners to reset custom validity messages when the user corrects them
+        document.querySelectorAll('input[type="password"]').forEach(function (input) {
+            input.addEventListener('input', function () {
+                input.setCustomValidity('');
+            });
+        });
+    });
+
+    const password = document.querySelector("#pwd");
+    const passwordConf = document.querySelector("#pwdConf");
+    const eyeIcon = document.querySelector("#eye");
+    const eyeIcon2 = document.querySelector("#eye2");
+    const togglePassword = document.querySelector("#togglePassword");
+    const togglePassword2 = document.querySelector("#togglePassword2");
+
+    togglePassword.addEventListener("click", () => {
+        if (eyeIcon.classList.contains("bi-eye")) {
+            password.setAttribute("type", "text");
+            eyeIcon.classList.replace("bi-eye", "bi-eye-slash");
+        } else {
+            password.setAttribute("type", "password");
+            eyeIcon.classList.replace("bi-eye-slash", "bi-eye");
+        }
+    });
+
+    togglePassword2.addEventListener("click", () => {
+        if (eyeIcon2.classList.contains("bi-eye")) {
+            passwordConf.setAttribute("type", "text");
+            eyeIcon2.classList.replace("bi-eye", "bi-eye-slash");
+        } else {
+            passwordConf.setAttribute("type", "password");
+            eyeIcon2.classList.replace("bi-eye-slash", "bi-eye");
+        }
+    });
+
+</script>

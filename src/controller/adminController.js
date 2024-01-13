@@ -36,4 +36,32 @@ module.exports = {
    * USER - View, Edit, Delete 
    * USER - Block feature ?? PUT / or PATCH ?? 
    */
+
+  viewUser: async (req,res) => {
+    console.log(req.params)
+
+    const user = await User.findById(req.params.id)
+
+    if(user){
+      res.render('admin/viewUser', {
+        user: user,
+        success: req.flash('success'),
+        error: req.flash('error')
+      })
+    }
+  },
+
+  editUser: async (req,res) => {
+    console.log(req.params)
+
+    const user = await User.findById(req.params.id)
+
+    if(user){
+      res.render('admin/editUser', {
+        user: user,
+        success: req.flash('success'),
+        error: req.flash('error')
+      })
+    }
+  },
 };
