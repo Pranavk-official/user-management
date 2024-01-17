@@ -3,6 +3,8 @@
       <div class="card-body">
         <h5 class="card-title"><%= user.firstName + ' ' + user.lastName %></h5>
         <p class="card-text"><%= user.email %></p>
+        <p class="card-text text-secondary"><%= user.createdAt %></p>
+        <p class="card-text text-secondary"><%= user.updatedAt %></p>
         <a href="#" class="btn btn-outline-warning">Edit User</a>
         <a href="#" class="btn btn-outline-danger">Delete User</a>
       </div>

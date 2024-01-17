@@ -5,7 +5,8 @@ module.exports = {
             title: 'Home Page'
         }
 
-
+        console.log(req.session.id);
+        
         res.render('index', {
             locals,
             success: req.flash("success"),

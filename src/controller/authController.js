@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt");
 const adminLayout = "./layouts/adminLayout.ejs";
 const User = require("../model/userSchema");
-const passport = require("passport");
+const passport = require("../config/passport-config");
 // const jwt = require("jsonwebtoken");
 // const jwtSecret = process.env.JWT_SECRET;
 
@@ -93,7 +93,7 @@ module.exports = {
           console.log(err);
           return next(err);
         }
-        res.locals.user = req.user;
+
         return res.redirect("/");
       });
     })(req, res, next);

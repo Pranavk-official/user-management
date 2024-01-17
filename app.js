@@ -64,29 +64,25 @@ app.use(express.static(path.join(__dirname, "public")));
 // Session
 app.use(
   session({
-    secret: process.env.SECRET,
+    secret: uuidv4(),
     resave: false,
     saveUninitialized: false,
-    maxAge: 3 * 60 * 60,
     store: MongoStore.create({
       mongoUrl: process.env.MONGODB_URI,
-      ttl: 3 * 60 * 60 ,
     }),
-    cookie: {
-      maxAge: 3 * 60 * 60,
-    },
   })
 );
 
 // passport js
 app.use(flash());
+// nocache for disabling browser caching
+app.use(nocache());
 
 // passport js
 app.use(passport.initialize());
 app.use(passport.session());
+// app.use(passport.authenticate('session'));
 
-// nocache for disabling browser caching
-app.use(nocache());
 
 // Routes
 app.use("/", authRouter);

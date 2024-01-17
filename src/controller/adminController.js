@@ -9,6 +9,8 @@ module.exports = {
       title: "User Management",
     };
 
+    console.log(req.session.id)
+
     const messages = await req.flash("info");
 
     let perPage = 12;
@@ -51,17 +53,30 @@ module.exports = {
     }
   },
 
-  editUser: async (req,res) => {
+  getEditUser: async (req,res) => {
+
+    const locals = {
+      title: 'Edit User'
+    }
+
     console.log(req.params)
 
     const user = await User.findById(req.params.id)
 
     if(user){
       res.render('admin/editUser', {
-        user: user,
+        locals,
+        user,
         success: req.flash('success'),
         error: req.flash('error')
       })
     }
   },
+  editUser: async (req,res) => {
+    console.log(req.body)
+
+
+  },
+
+
 };

@@ -3,7 +3,11 @@
         <%= locals.title + ' : ' + user.firstName + ' ' + user.lastName%>
     </h1>
 
-    <form action="/admin/edit/<% user._id %>" method="POST" class="card-body">
+    <pre>
+        <%= user %> 
+    </pre>
+
+    <form action="/admin/edit/<% user.id %>" method="POST" class="card-body">
 
         <% if (success.length> 0) { %>
             <div class="alert alert-success alert-dismissible fade show" role="alert">
