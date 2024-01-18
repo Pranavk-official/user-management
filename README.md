@@ -10,14 +10,18 @@ A Node.js web application project with a user management system using Express an
 ### User Side:
 - [x] Login
 - [x] Register
-- [x] View homepage with user details
+- [x] View homepage with User Details
+- [ ] Edit User Details (*except password*)
+- [ ] Change Password (using otp ??)
 
 ### Admin Side:
 - [x] Login
-- [x] View user list
-- [ ] Edit user details
-- [ ] View user details
-- [ ] Delete user
+- [x] View User list
+- [x] Add New User
+- [ ] Edit User Details
+- [x] View User Details
+- [ ] Delete User
+- [ ] Block/Unblock User
 
 ### Security:
 - User authentication implemented using Passport.js local strategy.
