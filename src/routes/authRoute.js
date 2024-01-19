@@ -9,24 +9,22 @@ const { isAdminLoggedOut, isLoggedOut } = require('../middleware/authMiddleware'
  * User
  */
 
-// GET / 
-router.get('/login',  isLoggedOut, authController.getUserLogin)
-router.get('/register', isLoggedOut, authController.getUserRegister)
-
-// POST / 
-router.post('/login', isLoggedOut, authController.userLogin)
-router.post('/register', isLoggedOut, authController.userRegister)
+router
+    .get('/login',  isLoggedOut, authController.getUserLogin)
+    .post('/login', isLoggedOut, authController.userLogin)
+router
+    .get('/register', isLoggedOut, authController.getUserRegister)
+    .post('/register', isLoggedOut, authController.userRegister)
 
 /**
  * Admin
 */
 
-// GET /  
-router.get('/admin/login', isAdminLoggedOut, authController.getAdminLogin)
+router
+    .get('/admin/login', isAdminLoggedOut, authController.getAdminLogin)
+    .post('/admin/login', authController.adminLogin)
 // router.get('/admin/register', isAdminLoggedOut, authController.getAdminRegister)
 
-// POST /  
-router.post('/admin/login', authController.adminLogin)
 // router.post('/admin/register', authController.adminRegister)
 
 // Logout

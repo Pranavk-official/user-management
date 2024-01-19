@@ -18,7 +18,7 @@ A Node.js web application project with a user management system using Express an
 - [x] Login
 - [ ] View Admin Profile
 - [x] View User list
-- [ ] Search User
+- [x] Search User
 - [x] Add New User
 - [x] Edit User Details
 - [x] View User Details

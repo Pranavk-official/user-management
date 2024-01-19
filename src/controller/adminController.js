@@ -156,6 +156,34 @@ module.exports = {
     await User.deleteOne({ _id: req.params.id });
     req.flash('success', 'User deleted successfully!!!')
     res.redirect("/admin");
+  },
+
+  searchUsers: async (req, res) => {
+    const locals = {
+      title: "Search User",
+      description: "Free NodeJs User Management System",
+    };
+  
+    try {
+      let searchTerm = req.body.searchTerm;
+      const searchNoSpecialChar = searchTerm.replace(/[^a-zA-Z0-9 ]/g, "");
+  
+      const users = await User.find({
+        $or: [
+          { firstName: { $regex: new RegExp(searchNoSpecialChar, "i") } },
+          { lastName: { $regex: new RegExp(searchNoSpecialChar, "i") } },
+        ],
+      });
+  
+      res.render("admin/searchUser", {
+        users,
+        admin: req.user,
+        locals,
+        layout: adminLayout
+      });
+    } catch (error) {
+      console.log(error);
+    }
   }
 
 };
