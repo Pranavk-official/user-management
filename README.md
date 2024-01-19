@@ -20,9 +20,9 @@ A Node.js web application project with a user management system using Express an
 - [x] View User list
 - [ ] Search User
 - [x] Add New User
-- [ ] Edit User Details
+- [x] Edit User Details
 - [x] View User Details
-- [ ] Delete User
+- [x] Delete User
 - [ ] Block/Unblock User
 
 ### Security:

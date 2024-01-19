@@ -1,4 +1,18 @@
-<div class="container card py-5 my-5" style="max-width: 550px;">
+<div class="col py-3">
+    <div class="row">
+        <div class="col">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
+                    <li class="breadcrumb-item active">New Customer</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</div>
+
+
+<div class="container card py-5 my-2" style="max-width: 550px;">
     <h1>
         <%= locals.title %>
     </h1>
@@ -10,41 +24,47 @@
                 <%= success %>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
-            <% } %>
-                <% if (error.length> 0) { %>
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        <%= error %>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                    <% } %>
+        <% } %>
+        <% if (error.length> 0) { %>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <%= error %>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <% } %>
+        <div class="row g-3 mb-4">
+            <div class="col-md-6">
+                <label for="firstName" class="form-label">First name</label>
+                <input name="firstName" type="text" class="form-control" id="firstName" placeholder="John" required>
+            </div>
+            <div class="col-md-6">
+                <label for="lastName" class="form-label">Last name</label>
+                <input name="lastName" type="text" class="form-control" id="lastName" placeholder="Doe" required>
+            </div>
+        </div>
+        <label for="email" class="form-label mb-2">Email</label>
+        <input name="email" type="email" class="form-control mb-4" id="email" placeholder="example@email.com" required>
+        <div class="row g-3 mb-2">
+            <div class="col-md-6">
+                <label for="pwd" class="form-label">Password</label>
+                <div class="input-group">
+                    <input name="pwd" type="password" class="form-control" id="pwd" required>
+                    <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                        <i class="bi bi-eye" aria-hidden="true" id="eye"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="pwdConf" class="form-label">Password Confirmation</label>
+                <div class="input-group">
+                    <input name="pwdConf" type="password" class="form-control" id="pwdConf" required>
+                    <button class="btn btn-outline-secondary" type="button" id="togglePassword2">
+                        <i class="bi bi-eye" aria-hidden="true" id="eye2"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
 
-                        <div class="row g-3 mb-4">
-                            <div class="col-md-6">
-                                <label for="firstName" class="form-label">First name</label>
-                                <input name="firstName" type="text" class="form-control" id="firstName"
-                                    placeholder="John" required>
-                            </div>
-                            <div class="col-md-6">
-                                <label for="lastName" class="form-label">Last name</label>
-                                <input name="lastName" type="text" class="form-control" id="lastName" placeholder="Doe"
-                                    required>
-                            </div>
-                        </div>
-                        <label for="email" class="form-label mb-2">Email</label>
-                        <input name="email" type="email" class="form-control mb-4" id="email"
-                            placeholder="example@email.com" required>
-                        <div class="row g-3 mb-2">
-                            <div class="col-md-6">
-                                <label for="pwd" class="form-label">Password</label>
-                                <input name="pwd" type="password" class="form-control" id="pwd" required>
-                            </div>
-                            <div class="col-md-6">
-                                <label for="pwdConf" class="form-label">Password Confirmation</label>
-                                <input name="pwdConf" type="password" class="form-control" id="pwdConf" required>
-                            </div>
-                        </div>
-
-                        <button class="btn btn-primary my-2" type="submit">Submit</button>
+        <button class="btn btn-primary my-2" type="submit">Submit</button>
 
     </form>
 </div>
@@ -93,6 +113,33 @@
                 input.setCustomValidity('');
             });
         });
+    });
+
+    const password = document.querySelector("#pwd");
+    const passwordConf = document.querySelector("#pwdConf");
+    const eyeIcon = document.querySelector("#eye");
+    const eyeIcon2 = document.querySelector("#eye2");
+    const togglePassword = document.querySelector("#togglePassword");
+    const togglePassword2 = document.querySelector("#togglePassword2");
+
+    togglePassword.addEventListener("click", () => {
+        if (eyeIcon.classList.contains("bi-eye")) {
+            password.setAttribute("type", "text");
+            eyeIcon.classList.replace("bi-eye", "bi-eye-slash");
+        } else {
+            password.setAttribute("type", "password");
+            eyeIcon.classList.replace("bi-eye-slash", "bi-eye");
+        }
+    });
+
+    togglePassword2.addEventListener("click", () => {
+        if (eyeIcon2.classList.contains("bi-eye")) {
+            passwordConf.setAttribute("type", "text");
+            eyeIcon2.classList.replace("bi-eye", "bi-eye-slash");
+        } else {
+            passwordConf.setAttribute("type", "password");
+            eyeIcon2.classList.replace("bi-eye-slash", "bi-eye");
+        }
     });
 
 </script>

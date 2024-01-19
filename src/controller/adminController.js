@@ -1,3 +1,4 @@
+const bcrypt = require("bcrypt");
 const adminLayout = "./layouts/adminLayout.ejs";
 const User = require('../model/userSchema')
 
@@ -9,7 +10,7 @@ module.exports = {
       title: "User Management",
     };
 
-    console.log(req.session.id)
+    // console.log(req.session.id)
 
     const messages = await req.flash("info");
 
@@ -31,6 +32,8 @@ module.exports = {
       current: page,
       pages: Math.ceil(count / perPage),
       messages,
+      success: req.flash('success'),
+      error: req.flash('error'),
       layout: adminLayout
     });
   },
@@ -40,15 +43,21 @@ module.exports = {
    */
   
   viewUser: async (req,res) => {
-    console.log(req.params)
+    const locals= {
+      title: 'View User'
+    }
+    // console.log(req.params)
 
     const user = await User.findById(req.params.id)
 
     if(user){
       res.render('admin/viewUser', {
+        locals,
         user: user,
+        admin: req.user,
         success: req.flash('success'),
-        error: req.flash('error')
+        error: req.flash('error'),
+        layout: adminLayout
       })
     }
   },
@@ -59,7 +68,7 @@ module.exports = {
       title: 'Edit User'
     }
 
-    console.log(req.params)
+    // console.log(req.params)
 
     const user = await User.findById(req.params.id)
 
@@ -67,12 +76,14 @@ module.exports = {
       res.render('admin/editUser', {
         locals,
         user,
+        admin: req.user,
         success: req.flash('success'),
-        error: req.flash('error')
+        error: req.flash('error'),
+        layout: adminLayout
       })
     }
   },
-  getAdduser: async (req,res) => {
+  getAddUser: async (req,res) => {
 
     const locals = {
       title: 'Add User'
@@ -80,15 +91,25 @@ module.exports = {
 
     res.render('admin/addUser', {
       locals,
+      admin: req.user,
       success: req.flash('success'),
       error: req.flash('error'),
       layout: adminLayout
     })
   },
   editUser: async (req,res) => {
-    console.log(req.body)
+    console.log(req.body, req.params)
 
-
+    const {firstName, lastName, email} = req.body
+    await User.findByIdAndUpdate(req.params.id,{
+      firstName,
+      lastName,
+      email
+    })
+    
+    req.flash('success', 'User details edited successfully!!')
+    res.redirect(`/admin/edit/${req.params.id}`)
+ 
   },
   
   addUser: async (req,res) => {
@@ -100,37 +121,41 @@ module.exports = {
       req.flash("error", "User already exists");
       console.log("User already exists");
       res.redirect("/admin/add-user");
-    }
-
-    if (pwd < 6 && pwdConf < 6) {
-      req.flash("error", "Password is less than 6 character");
-      res.redirect("/admin/add-user");
-    } else {
-      if (pwd === pwdConf) {
-        const hashpwd = await bcrypt.hash(pwd, 12);
-
-        const user = await User.create({
-          firstName,
-          lastName,
-          email,
-          password: hashpwd,
-        });
-
-        if (user) {
-          req.flash("success", "User successfully created!!");
-          res.redirect("/admin/add-user");
-        } else {
-          req.flash("error", "User not created");
-          res.redirect("/admin/");
-        }
-      } else {
-        req.flash("error", "Password does not match");
-        console.log("Password does not match");
+    }else {
+      if (pwd < 6 && pwdConf < 6) {
+        req.flash("error", "Password is less than 6 character");
         res.redirect("/admin/add-user");
+      } else {
+        if (pwd === pwdConf) {
+          const hashpwd = await bcrypt.hash(pwd, 12);
+  
+          const user = await User.create({
+            firstName,
+            lastName,
+            email,
+            password: hashpwd,
+          });
+  
+          if (user) {
+            req.flash("success", "User successfully created!!");
+            res.redirect("/admin");
+          } else {
+            req.flash("error", "User not created");
+            res.redirect("/admin/");
+          }
+        } else {
+          req.flash("error", "Password does not match");
+          console.log("Password does not match");
+          res.redirect("/admin/add-user");
+        }
       }
     }
-
   },
 
+  deleteUser: async (req,res) => {
+    await User.deleteOne({ _id: req.params.id });
+    req.flash('success', 'User deleted successfully!!!')
+    res.redirect("/admin");
+  }
 
 };
