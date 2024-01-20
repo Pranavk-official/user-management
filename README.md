@@ -11,6 +11,8 @@ A Node.js web application project with a user management system using Express an
 - [x] Login
 - [x] Register
 - [x] View homepage with User Details
+- [x] Generate Pokemon Cards on Home Page
+- [x] Dragon Repeller Game
 - [ ] Edit User Details (*except password*)
 - [ ] Change Password (using otp ??)
 
