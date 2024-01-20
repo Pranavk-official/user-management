@@ -1,7 +1,7 @@
 <header>
   <nav class="navbar bg-dark navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" href="/">
         <img src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo.svg" alt="Logo" width="30" height="24"
           class="d-inline-block align-text-top">
         <%= locals.title %>
@@ -13,6 +13,12 @@
 
         <ul class="navbar-nav">
           <% if (typeof user !== 'undefined') { %>
+            <li class="nav-item">
+              <a class="nav-link text-success" href="/game">
+                <i class="bi bi-controller"></i>
+                Dragon Repeller
+              </a>
+            </li>
             <li class="nav-item">
               <a class="nav-link text-danger" href="/logout">
                 <i class="bi bi-box-arrow-left"></i>

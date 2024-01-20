@@ -13,5 +13,19 @@ module.exports = {
             error: req.flash("error"),
             user: req.user,
         })
+    },
+    getGame: (req,res)=> {
+        const locals = {
+            title: 'Dragon Repeller'
+        }
+
+        console.log(req.session.id);
+        
+        res.render('user/game', {
+            locals,
+            success: req.flash("success"),
+            error: req.flash("error"),
+            user: req.user,
+        })
     }
 }
