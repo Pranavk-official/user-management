@@ -172,6 +172,7 @@ module.exports = {
         $or: [
           { firstName: { $regex: new RegExp(searchNoSpecialChar, "i") } },
           { lastName: { $regex: new RegExp(searchNoSpecialChar, "i") } },
+          { email: { $regex: new RegExp(searchNoSpecialChar, "i") } },
         ],
       });
   

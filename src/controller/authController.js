@@ -44,11 +44,12 @@ module.exports = {
     if (isExist) {
       req.flash("error", "User already exists, Please login");
       console.log("User already exists, Please login");
-      res.redirect("/login");
+      return res.redirect("/login");
     }
 
-    if (pwd < 6 && pwdConf < 6) {
-      req.flash("error", "Password is less than 6 character");
+    if (pwd.length < 8 && pwdConf.length < 8) {
+      req.flash("error", "Password is less than 8 character");
+      console.log( "Password is less than 8 character" );
       res.redirect("/register");
     } else {
       if (pwd === pwdConf) {

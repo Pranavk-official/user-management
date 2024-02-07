@@ -21,14 +21,13 @@ const authRouter = require("./src/routes/authRoute");
 const userRouter = require("./src/routes/userRoute");
 const adminRouter = require("./src/routes/adminRoute");
 
-
 /**
  * Auth - user - login, register
  * Auth - admin - login, register
  *
  * UserRoute - homepage
  * AdminRoute - dashboard, edit, view, delete and search (create user)* : Work in Progress
- * 
+ *
  * User verification ?? email otp ??
  * User SSO login ?? Google Strategy ? should i add it ??
  */
@@ -45,11 +44,10 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 app.set("layout", "./layouts/userLayout");
 
-
 /**
  * Middlewares
  * - Morgan
- * - body parser 
+ * - body parser
  * - cookie parser
  * - method override
  * - static files
@@ -61,28 +59,29 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
+// nocache for disabling browser caching
+app.use(nocache());
+
 // Session
 app.use(
   session({
-    secret: uuidv4(),
+    secret: process.env.SECRET,
     resave: false,
     saveUninitialized: false,
+    maxAge: 1000,
     store: MongoStore.create({
       mongoUrl: process.env.MONGODB_URI,
+      ttl: 1000,
     }),
   })
 );
 
 // passport js
 app.use(flash());
-// nocache for disabling browser caching
-app.use(nocache());
 
 // passport js
 app.use(passport.initialize());
 app.use(passport.session());
-// app.use(passport.authenticate('session'));
-
 
 // Routes
 app.use("/", authRouter);

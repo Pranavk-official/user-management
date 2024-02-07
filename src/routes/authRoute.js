@@ -20,12 +20,13 @@ router
  * Admin
 */
 
-router
-    .get('/admin/login', isAdminLoggedOut, authController.getAdminLogin)
-    .post('/admin/login', authController.adminLogin)
-// router.get('/admin/register', isAdminLoggedOut, authController.getAdminRegister)
+router.route('/admin/login')
+    .get(isAdminLoggedOut, authController.getAdminLogin)
+    .post( authController.adminLogin)
 
-// router.post('/admin/register', authController.adminRegister)
+router.route('/admin/register')
+    .get(isAdminLoggedOut, authController.getAdminRegister)
+    .post(authController.adminRegister)
 
 // Logout
 router.get('/logout', authController.logout)
