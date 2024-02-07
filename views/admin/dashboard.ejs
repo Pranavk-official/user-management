@@ -89,49 +89,6 @@
             >
               <i class="bi bi-person-x"></i>
             </button>
-            <div class="modal fade" tabindex="-1" role="dialog" id="deleteModal">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <div class="modal-title">
-                      You are about to remove a customer record.
-                    </div>
-                    <button
-                      type="button"
-                      class="btn-close"
-                      data-bs-dismiss="modal"
-                      aria-label="Close"
-                    ></button>
-                  </div>
-                  <div class="modal-body">
-                    <p>
-                      This will remove the user record of
-                      <b class="fw-bold"><%= element.firstName %> <%= element.lastName %></b
-                      ><br />
-                      Are you sure?
-                    </p>
-                  </div>
-                  <div class="modal-footer">
-                    <button
-                      type="button"
-                      class="btn btn-secondary"
-                      data-bs-dismiss="modal"
-                    >
-                      Close
-                    </button>
-                    <form
-                      action="/admin/edit/<%= element._id %>?_method=DELETE"
-                      method="POST"
-                      class="position-relative"
-                    >
-                      <button type="submit" class="btn btn-danger">
-                        Yes, Remove User
-                      </button>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
             <!-- <form action="/admin/edit/<%= element._id %>?_method=DELETE" method="POST" class="position-relative">
                   <button type="submit" class="btn btn-danger btn-sm">
                     <i class="bi bi-person-x"></i>
@@ -140,7 +97,49 @@
           </div>
         </td>
       </tr>
-      
+      <div class="modal fade" tabindex="-1" role="dialog" id="deleteModal">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <div class="modal-title">
+                You are about to remove a customer record.
+              </div>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <p>
+                This will remove the user record of
+                <b class="fw-bold"><%= element.firstName %> <%= element.lastName %></b
+                ><br />
+                Are you sure?
+              </p>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <form
+                action="/admin/edit/<%= element._id %>?_method=DELETE"
+                method="POST"
+                class="position-relative"
+              >
+                <button type="submit" class="btn btn-danger">
+                  Yes, Remove User
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
       <% }) %>
     </tbody>
   </table>
